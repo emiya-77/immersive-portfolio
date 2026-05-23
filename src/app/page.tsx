@@ -6,17 +6,23 @@ import Overlay from "@/components/ui/Overlay";
 
 export default function Home() {
   return (
-    <main className="w-screen h-screen overflow-hidden bg-black">
-      <Canvas
-        camera={{
-          position: [0, 2, 8],
-          fov: 50,
-        }}
-      >
-        <Experience />
-      </Canvas>
+    <main className="relative bg-black">
+      {/* FIXED 3D WORLD */}
+      <div className="fixed inset-0">
+        <Canvas
+          camera={{
+            position: [0, 2, 8],
+            fov: 50,
+          }}
+        >
+          <Experience />
+        </Canvas>
 
-      <Overlay />
+        <Overlay />
+      </div>
+
+      {/* INVISIBLE SCROLL TIMELINE */}
+      <div className="h-[500vh]" />
     </main>
   );
 }
