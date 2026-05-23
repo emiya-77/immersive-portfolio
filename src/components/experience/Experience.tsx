@@ -5,6 +5,7 @@ import ScrollController from "./ScrollController";
 import ScrollSync from "./ScrollSync";
 import ProjectStones from "./ProjectStones";
 import { useScene } from "./useScene";
+import SceneAnchors from "./SceneAnchors";
 
 export default function Experience() {
     const scene = useScene();
@@ -15,11 +16,11 @@ export default function Experience() {
             <ScrollSync />
 
             {/* Background */}
-            <color attach="background" args={["#061016"]} />
+            <color attach="background" args={[scene.color]} />
 
             {/* Fog */}
             {/* <fog attach="fog" args={["#061016", 8, 30]} /> */}
-            <fog attach="fog" args={["#061016", scene.fogNear, scene.fogFar]} />
+            <fog attach="fog" args={[scene.color, scene.fogNear, scene.fogFar]} />
 
             {/* Lights */}
             {/* <ambientLight intensity={0.25} /> */}
@@ -27,7 +28,7 @@ export default function Experience() {
 
             <directionalLight
                 position={[5, 10, 5]}
-                intensity={1}
+                intensity={scene.light}
                 color="#b9d5ff"
             />
 
@@ -39,6 +40,7 @@ export default function Experience() {
             <Forest />
 
             <ProjectStones />
+            <SceneAnchors />
         </>
     );
 }

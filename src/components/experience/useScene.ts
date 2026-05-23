@@ -14,6 +14,7 @@ export function useScene() {
         particleIntensity: 1,
         treeDensity: 60,
         openness: 0.6,
+        color: "#0b1f1a",
       };
     }
 
@@ -26,6 +27,7 @@ export function useScene() {
         particleIntensity: 1.4,
         treeDensity: 100,
         openness: 0.3,
+        color: "#061016",
       };
     }
 
@@ -38,6 +40,7 @@ export function useScene() {
         particleIntensity: 0.7,
         treeDensity: 40,
         openness: 0.8,
+        color: "#0f1a14",
       };
     }
 
@@ -49,6 +52,7 @@ export function useScene() {
       particleIntensity: 0.3,
       treeDensity: 20,
       openness: 1,
+      color: "#1a1410",
     };
   }, [progress]);
 }

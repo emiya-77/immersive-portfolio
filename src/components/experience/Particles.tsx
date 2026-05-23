@@ -4,10 +4,13 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { useScene } from "./useScene";
 
-const PARTICLE_COUNT = 2000;
 
 export default function Particles() {
+    const scene = useScene();
+    const PARTICLE_COUNT = Math.floor(2000 * scene.particleIntensity);
+
     const pointsRef = useRef<THREE.Points>(null);
 
     const circleTexture = useMemo(() => {
@@ -33,9 +36,9 @@ export default function Particles() {
         const positions = new Float32Array(PARTICLE_COUNT * 3);
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
-            positions[i * 3 + 0] = (Math.random() - 0.5) * 40;
-            positions[i * 3 + 1] = Math.random() * 15;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+            positions[i * 3 + 0] = (Math.random() - 0.5) * 50;
+            positions[i * 3 + 1] = Math.random() * 20;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
         }
 
         return positions;
