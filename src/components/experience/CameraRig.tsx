@@ -15,41 +15,42 @@ export default function CameraRig() {
     useFrame(() => {
         const t = progress;
 
-        // base path through forest
         let targetZ = 8;
         let targetY = 2;
 
-        // INTRO (start)
+        // INTRO
         if (t <= zones.projects) {
             const localT = t / zones.projects;
 
-            targetZ = 8 - localT * 10;
+            targetZ = 8 - localT * 12;
             targetY = 2 + Math.sin(localT * Math.PI) * 1;
         }
 
-        // PROJECTS (deep forest)
+        // PROJECTS
         else if (t <= zones.skills) {
             const localT =
                 (t - zones.projects) /
                 (zones.skills - zones.projects);
 
-            targetZ = -2 - localT * 12;
+            targetZ = -4 - localT * 16;
             targetY = 2 + localT * 2;
         }
 
-        // SKILLS (open area)
+        // SKILLS
         else if (t <= zones.contact) {
             const localT =
                 (t - zones.skills) /
                 (zones.contact - zones.skills);
 
-            targetZ = -14 - localT * 10;
+            targetZ = -20 - localT * 14;
             targetY = 4;
         }
 
-        target.current.set(0, targetY, targetZ);
+        const swayX = Math.sin(t * 3) * 1.5;
 
-        camera.position.lerp(target.current, 0.06);
+        target.current.set(swayX, targetY, targetZ);
+
+        camera.position.lerp(target.current, 0.04);
 
         camera.lookAt(0, 1.5, 0);
     });

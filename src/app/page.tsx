@@ -2,6 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import Experience from "@/components/experience/Experience";
+import Overlay from "@/components/ui/Overlay";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       >
         <Experience />
       </Canvas>
+
+      <Overlay />
     </main>
   );
 }
