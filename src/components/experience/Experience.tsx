@@ -1,3 +1,4 @@
+import CameraRig from "./CameraRig";
 import Forest from "./Forest";
 import Particles from "./Particles";
 
@@ -22,6 +23,9 @@ export default function Experience() {
             {/* Environment */}
             <Particles />
             <Forest />
+
+            {/* Camera movement */}
+            <CameraRig />
 
             {/* Temporary center object */}
             <mesh position={[0, 1, 0]}>
