@@ -5,23 +5,19 @@ export type Project = {
   position: [number, number, number];
 };
 
-export const projects: Project[] = [
+export const projects = [
   {
-    id: "p1",
-    title: "Project One",
-    description: "A cinematic web experience",
-    position: [-2, 1, -5],
+    id: "kivent",
+    title: "Kivent",
+    description:
+      "AI-powered event organizer platform with Gemini AI integration, Clerk auth, and subscription system.",
+    position: [-6, 1.5, -12],
   },
   {
-    id: "p2",
-    title: "Project Two",
-    description: "A React + 3D interaction system",
-    position: [2, 1.5, -8],
-  },
-  {
-    id: "p3",
-    title: "Project Three",
-    description: "Experimental immersive UI concept",
-    position: [0, 2, -12],
+    id: "elf",
+    title: "ELF Bangladesh",
+    description:
+      "Enterprise incentive management system with dashboards, QR workflows, and analytics.",
+    position: [6, 1.5, -18],
   },
 ];

@@ -1,3 +1,4 @@
+import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import Forest from "./Forest";
 import Particles from "./Particles";
 import CameraRig from "./CameraRig";
@@ -8,6 +9,7 @@ import { useScene } from "./useScene";
 import SceneAnchors from "./SceneAnchors";
 import Background from "./Background";
 import Foreground from "./Foreground";
+import Atmosphere from "./Atmosphere";
 
 export default function Experience() {
     const scene = useScene();
@@ -47,10 +49,28 @@ export default function Experience() {
             <SceneAnchors />
 
             {/* Atmosphere */}
+            <Atmosphere />
             <Particles />
 
             {/* Foreground */}
             <Foreground />
+
+
+            <EffectComposer>
+                {/* soft glow */}
+                <Bloom
+                    intensity={0.6}
+                    luminanceThreshold={0.2}
+                    luminanceSmoothing={0.9}
+                />
+
+                {/* cinematic focus */}
+                {/* <Vignette
+                    offset={0.3}
+                    darkness={0.6}
+                    eskil={false}
+                /> */}
+            </EffectComposer>
         </>
     );
 }
