@@ -22,7 +22,17 @@ export default function Overlay() {
                 </h1>
 
                 {activeProject && (
-                    <div className="mt-6 transition-opacity duration-300">
+                    <div
+                        className={`
+                            mt-6
+                            transition-all
+                            duration-700
+                            ${activeProject
+                                ? "opacity-100 translate-y-0"
+                                : "opacity-0 translate-y-4"
+                            }
+                        `}
+                    >
                         <h2 className="text-xl font-medium">
                             {activeProject.title}
                         </h2>

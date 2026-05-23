@@ -6,6 +6,8 @@ import ScrollSync from "./ScrollSync";
 import ProjectStones from "./ProjectStones";
 import { useScene } from "./useScene";
 import SceneAnchors from "./SceneAnchors";
+import Background from "./Background";
+import Foreground from "./Foreground";
 
 export default function Experience() {
     const scene = useScene();
@@ -36,11 +38,19 @@ export default function Experience() {
             <CameraRig />
 
             {/* World */}
-            <Particles />
-            <Forest />
+            {/* Spatial layers */}
+            <Background />
 
+            {/* Midground */}
+            <Forest />
             <ProjectStones />
             <SceneAnchors />
+
+            {/* Atmosphere */}
+            <Particles />
+
+            {/* Foreground */}
+            <Foreground />
         </>
     );
 }
