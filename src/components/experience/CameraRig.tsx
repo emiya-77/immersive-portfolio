@@ -3,22 +3,53 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
+import { useScrollProgress } from "./useScrollProgress";
+import { zones } from "./zones";
 
 export default function CameraRig() {
     const { camera } = useThree();
+    const progress = useScrollProgress((s) => s.progress);
 
-    const target = useRef(new THREE.Vector3(0, 2, 8));
+    const target = useRef(new THREE.Vector3());
 
-    useFrame((state) => {
-        const t = state.clock.elapsedTime;
+    useFrame(() => {
+        const t = progress;
 
-        // subtle floating motion
-        const floatX = Math.sin(t * 0.3) * 0.5;
-        const floatY = Math.sin(t * 0.2) * 0.3;
+        // base path through forest
+        let targetZ = 8;
+        let targetY = 2;
 
-        target.current.set(floatX, 2 + floatY, 8);
+        // INTRO (start)
+        if (t <= zones.projects) {
+            const localT = t / zones.projects;
 
-        camera.position.lerp(target.current, 0.02);
+            targetZ = 8 - localT * 10;
+            targetY = 2 + Math.sin(localT * Math.PI) * 1;
+        }
+
+        // PROJECTS (deep forest)
+        else if (t <= zones.skills) {
+            const localT =
+                (t - zones.projects) /
+                (zones.skills - zones.projects);
+
+            targetZ = -2 - localT * 12;
+            targetY = 2 + localT * 2;
+        }
+
+        // SKILLS (open area)
+        else if (t <= zones.contact) {
+            const localT =
+                (t - zones.skills) /
+                (zones.contact - zones.skills);
+
+            targetZ = -14 - localT * 10;
+            targetY = 4;
+        }
+
+        target.current.set(0, targetY, targetZ);
+
+        camera.position.lerp(target.current, 0.06);
 
         camera.lookAt(0, 1.5, 0);
     });

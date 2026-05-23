@@ -1,17 +1,23 @@
-import CameraRig from "./CameraRig";
 import Forest from "./Forest";
 import Particles from "./Particles";
+import CameraRig from "./CameraRig";
+import ScrollController from "./ScrollController";
+import ScrollSync from "./ScrollSync";
 
 export default function Experience() {
     return (
         <>
+            {/* Smooth scroll engine */}
+            <ScrollController />
+            <ScrollSync />
+
             {/* Background */}
             <color attach="background" args={["#061016"]} />
 
             {/* Fog */}
             <fog attach="fog" args={["#061016", 8, 30]} />
 
-            {/* Lighting */}
+            {/* Lights */}
             <ambientLight intensity={0.25} />
 
             <directionalLight
@@ -20,18 +26,12 @@ export default function Experience() {
                 color="#b9d5ff"
             />
 
-            {/* Environment */}
-            <Particles />
-            <Forest />
-
-            {/* Camera movement */}
+            {/* Camera */}
             <CameraRig />
 
-            {/* Temporary center object */}
-            <mesh position={[0, 1, 0]}>
-                <sphereGeometry args={[1, 32, 32]} />
-                <meshStandardMaterial color="#88ccff" />
-            </mesh>
+            {/* World */}
+            <Particles />
+            <Forest />
         </>
     );
 }
