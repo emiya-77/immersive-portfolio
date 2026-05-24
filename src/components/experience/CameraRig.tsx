@@ -69,7 +69,7 @@ export default function CameraRig() {
         // inertia / lag
         camera.position.lerp(
             target.current,
-            0.035
+            0.06
         );
 
         // dynamic look target
@@ -89,7 +89,10 @@ export default function CameraRig() {
         );
 
         // cinematic tilt
-        camera.rotation.z = Math.sin(state.clock.elapsedTime * 0.2) * 0.01;
+        camera.rotateZ(
+            Math.sin(state.clock.elapsedTime * 0.2) *
+            0.0008
+        );
     });
 
     return null;
